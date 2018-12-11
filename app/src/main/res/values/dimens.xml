@@ -9,4 +9,10 @@
     <!-- 底部导航条字的大小 -->
     <dimen name="main_tab_item_text_size">10sp</dimen>
 
+    <!-- 顶部导航条字的大小 -->
+    <dimen name="toolbar_header_text_size">16sp</dimen>
+
+    <!-- 发现页面 子元素样式 -->
+    <dimen name="find_item_text1_size">16sp</dimen>
+    <dimen name="find_item_text2_size">14sp</dimen>
 </resources>

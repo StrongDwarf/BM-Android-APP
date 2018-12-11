@@ -4,6 +4,10 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <!-- 整体颜色 -->
+    <color name="app_background">#ffffff</color>  <!-- app背景颜色 -->
+
+    <color name="black_normal">#000000</color>  <!-- 黑色 -->
     <!-- 底部导航栏的颜色样式 -->
     <color name="main_tab_item_text_select">#e37476</color>
     <color name="main_tab_item_text_normal">#383838</color>
@@ -24,4 +28,29 @@
     <color name="filter_button_text_normal">#333333</color>
     <color name="filter_button_text_select">#ffffff</color>
     <color name="filter_title_text_normal">#333333</color>
+
+    <!-- 顶部title的颜色 -->
+    <color name="toolbar_header_background">#ffffff</color>
+    <color name="toolbar_header_text">#000000</color>
+
+    <!-- 顶部导航栏颜色 -->
+    <color name="header_bar_text_normal">#898989</color>
+    <color name="header_bar_text_select">#000000</color>
+
+
+    <!-- 例子中使用的颜色 -->
+    <color name="main_color">#ffffff</color>
+    <color name="launcher_item_select">#54B0E9</color>
+    <color name="launcher_item_normal">#333333</color>
+    <color name="white_normal">#ffffffff</color>
+    <color name="split_line">#E7E7E7</color>
+    <color name="menu_left_item_select">#EEEEEE</color>
+    <color name="menu_left_item_text_select">#54B0E9</color>
+    <color name="menu_left_item_text_normal">#000000</color>
+
+    <!-- find页面子元素中相关样式颜色 -->
+    <color name="find_item_text1_color">#000000</color>
+    <color name="find_item_text2_color">#333333</color>
+    <color name="find_item_tag_background_color">#333333</color>
+    <color name="find_item_tag_text_color">#ffffff</color>
 </resources>
