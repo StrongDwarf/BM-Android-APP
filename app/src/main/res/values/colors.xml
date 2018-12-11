@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!-- 底部导航栏的颜色样式 -->
+    <color name="main_tab_item_text_select">#e37476</color>
+    <color name="main_tab_item_text_normal">#383838</color>
+    <color name="tab_item_background">#f6f6f6</color>
+    <color name="main_title_text_select">#78ffffff</color>
+    <color name="main_title_text_normal">#ffffffff</color>
+
+    <!-- 弹窗颜色 -->
+    <color name="popup_background_normal">#666666</color>
+    <color name="popup_title_normal">#676567</color>
+    <color name="popup_phone_red">#ff5265</color>
+    <color name="popup_button_background_color">#343234</color>
+    <color name="popup_button_text_color">#ffffff</color>
+
+    <!-- 筛选颜色 -->
+    <color name="filter_button_background_normal">#f6f6f6</color>
+    <color name="filter_button_background_select">#333333</color>
+    <color name="filter_button_text_normal">#333333</color>
+    <color name="filter_button_text_select">#ffffff</color>
+    <color name="filter_title_text_normal">#333333</color>
+</resources>
