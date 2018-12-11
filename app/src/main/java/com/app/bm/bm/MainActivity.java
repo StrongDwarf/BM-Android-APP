@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.app.bm.bm.fragment.CustomizeFragment;
 import com.app.bm.bm.fragment.DiscoverFragment;
@@ -17,8 +16,8 @@ import com.app.bm.bm.fragment.PersonalFragment;
 
 /**
  * 对fragment的切换,底部图标颜色的切换
- * @author ansen
- * @create time 2015-09-08
+ * @author xiaobaicai
+ * @create time 2018-12-11
  */
 public class MainActivity extends FragmentActivity {
     //要切换显示的四个Fragment
@@ -54,21 +53,9 @@ public class MainActivity extends FragmentActivity {
         tvPerson.setOnClickListener(tabClickListener);
         tvDiscover.setOnClickListener(tabClickListener);
         tvCustomize.setOnClickListener(tabClickListener);
-        //findViewById(R.id.iv_make).setOnClickListener(onClickListener);
     }
 
-    /*
-    private OnClickListener onClickListener=new OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.iv_make:
-                    Toast.makeText(MainActivity.this,"点击了制作按钮",Toast.LENGTH_SHORT).show();
-                    break;
-            }
-        }
-    };
-*/
+
     private OnClickListener tabClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {

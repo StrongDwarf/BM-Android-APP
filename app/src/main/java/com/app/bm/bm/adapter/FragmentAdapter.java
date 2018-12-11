@@ -9,8 +9,8 @@ import java.util.List;
 
 /**
  * ViewPager适配器
- * @author ansen
- * @create time 2016-04-18
+ * @author xiaobaicai
+ * @create time 2018-12-11
  */
 public class FragmentAdapter extends FragmentStatePagerAdapter{
 	private final List<Fragment> fragmentList = new ArrayList<Fragment>();
