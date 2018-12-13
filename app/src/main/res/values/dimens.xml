@@ -15,4 +15,14 @@
     <!-- 发现页面 子元素样式 -->
     <dimen name="find_item_text1_size">16sp</dimen>
     <dimen name="find_item_text2_size">14sp</dimen>
+
+    <!-- 正常页面离屏幕左右两边的宽度 -->
+    <dimen name="page_depart_from_screen_left">8dp</dimen>
+    <dimen name="page_depart_from_screen_right">8dp</dimen>
+
+    <!-- personal页面中menu item四周的padding -->
+    <dimen name="personal_item_from_page_left">14dp</dimen>
+    <dimen name="personal_item_from_page_right">14dp</dimen>
+    <dimen name="personal_item_from_page_top">12dp</dimen>
+    <dimen name="personal_item_from_page_bottom">12dp</dimen>
 </resources>

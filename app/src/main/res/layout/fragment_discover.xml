@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/toolbar_header_background"
+            android:background="@drawable/elem_bottom_line_black"
             app:layout_scrollFlags="scroll|enterAlways"
             app:titleTextAppearance="@style/bmTextTitleAppearance">
 

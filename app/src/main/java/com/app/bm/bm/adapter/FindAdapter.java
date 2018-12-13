@@ -11,9 +11,12 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.app.bm.bm.MainActivity;
 import com.app.bm.bm.R;
 import com.app.bm.bm.entity.FindItem;
+import com.app.bm.bm.fragment.DiscoverFragment;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -105,9 +108,8 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             {
                 return;
             }
-            //绑定点击事件
-            //holder.rootView.setOnClickListener()
 
+            ((DefaultViewHolder) holder).itemView.setId(findItem.getId());
             /*
             ((DefaultViewHolder) holder).text1.setText(findItem.getText1());
             ((DefaultViewHolder) holder).text2.setText(findItem.getText2());
@@ -178,11 +180,6 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }
     }
 
-    //设置一个填充ViewHolder
-    public class PadViewHolder extends RecyclerView.ViewHolder
-    {
-        public PadViewHolder(View view){ super(view);}
-    }
 
     //默认布局的ViewHolder
     public class DefaultViewHolder extends RecyclerView.ViewHolder
@@ -196,10 +193,22 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         {
             super(itemView);
 
+            //添加鼠标监听
+            itemView.setOnClickListener(itemClickListener);
+
             text1 = (TextView) itemView.findViewById(R.id.text1);
             text2 = (TextView) itemView.findViewById(R.id.text2);
             tag = (TextView) itemView.findViewById(R.id.tag);
             img = (ImageView) itemView.findViewById(R.id.img);
         }
     }
+
+    //子元素的点击事件
+    private View.OnClickListener itemClickListener = new View.OnClickListener(){
+        @Override
+        public void onClick(View v){
+
+            Log.i("xiaobaicai","点击"+v.getId());
+        }
+    };
 }

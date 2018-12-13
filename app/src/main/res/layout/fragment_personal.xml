@@ -1,8 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light"
-    android:gravity="center"
-    android:text="@string/personal"
-    android:id="@+id/fa_personal"/>
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <!-- 顶部导航条 -->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/elem_bottom_line_black"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:titleTextAppearance="@style/bmTextTitleAppearance">
+
+        <TextView
+            android:id="@+id/toolbar_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:singleLine="true"
+            android:background="@color/toolbar_header_background"
+            android:textColor="@color/toolbar_header_text"
+            android:textSize="@dimen/toolbar_header_text_size"
+            android:text="@string/personal"/>
+    </android.support.v7.widget.Toolbar>
+
+    <!-- 头像区域 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fra_user_head"></FrameLayout>
+    <!-- 中间的选项区域 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fra_menu"/>
+
+    <!-- 下面的选项区域 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="@dimen/page_depart_from_screen_right"
+        android:paddingLeft="@dimen/page_depart_from_screen_left"
+        android:orientation="vertical">
+        <RelativeLayout
+            android:id="@+id/item_about_bm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/personal_menu_item">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="关于斑马" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_right"/>
+
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/item_connact_service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/personal_menu_item">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="联系客服" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_right"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/item_goto_appstore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/personal_menu_item">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="去App Store评价" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/ic_right"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

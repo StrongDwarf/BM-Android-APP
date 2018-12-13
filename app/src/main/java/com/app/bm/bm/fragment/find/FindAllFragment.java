@@ -112,7 +112,7 @@ public class FindAllFragment extends Fragment implements SwipeRefreshLayout.OnRe
     {
         for(int i=0;i<5;i++)
         {
-            FindItem findItem = new FindItem(countA,"text1A"+String.valueOf(countA),"text2A"+String.valueOf(countA),"看JJ","");
+            FindItem findItem = new FindItem(i,"text1A"+String.valueOf(countA),"text2A"+String.valueOf(countA),"看JJ","");
             findItemList.add(findItem);
             countA++;
         }
@@ -125,7 +125,7 @@ public class FindAllFragment extends Fragment implements SwipeRefreshLayout.OnRe
     {
         for(int i=0;i<5;i++)
         {
-            FindItem findItem = new FindItem(countA,"text1B"+String.valueOf(countA),"text2B"+String.valueOf(countA),"看JJ","");
+            FindItem findItem = new FindItem(i,"text1B"+String.valueOf(countA),"text2B"+String.valueOf(countA),"看JJ","");
             findItemList.add(findItem);
             countB++;
         }

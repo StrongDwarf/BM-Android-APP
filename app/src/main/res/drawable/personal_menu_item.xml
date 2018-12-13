@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<!-- 连框颜色值 -->
+<item>
+    <shape>
+        <solid android:color="#dddddd" />
+
+    </shape>
+</item>
+<!-- 主体背景颜色值 -->
+<item
+    android:bottom="1sp">
+    <shape>
+        <solid android:color="@color/white_normal" />
+        <padding
+            android:top="@dimen/personal_item_from_page_top"
+            android:bottom="@dimen/personal_item_from_page_bottom"
+            android:right="@dimen/personal_item_from_page_right"
+            android:left="@dimen/personal_item_from_page_left"/>
+    </shape>
+</item>
+</layer-list>

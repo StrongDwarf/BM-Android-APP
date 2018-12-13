@@ -37,7 +37,6 @@
     <color name="header_bar_text_normal">#898989</color>
     <color name="header_bar_text_select">#000000</color>
 
-
     <!-- 例子中使用的颜色 -->
     <color name="main_color">#ffffff</color>
     <color name="launcher_item_select">#54B0E9</color>
@@ -53,4 +52,13 @@
     <color name="find_item_text2_color">#999999</color>
     <color name="find_item_tag_background_color">#333333</color>
     <color name="find_item_tag_text_color">#ffffff</color>
+
+    <!-- 元素底部线条 -->
+    <color name="elem_bottom_line">#dddddd</color>
+
+
+    <!-- personal页面相关颜色 -->
+    <color name="personal_menu_item_text">#999999</color>
+    <color name="personal_header_name">#333333</color>
+    <color name="personal_header_signature">#898989</color>
 </resources>
