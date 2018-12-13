@@ -72,6 +72,7 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
+
         if(viewType == TYPE_DEFAULT)
         {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_find, parent, false);
@@ -104,10 +105,14 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             {
                 return;
             }
+            //绑定点击事件
+            //holder.rootView.setOnClickListener()
+
+            /*
             ((DefaultViewHolder) holder).text1.setText(findItem.getText1());
             ((DefaultViewHolder) holder).text2.setText(findItem.getText2());
             ((DefaultViewHolder) holder).tag.setText(findItem.getTag());
-            /*
+
             //从网络上获取图片,并且设置为find iten图片
             Bitmap bitmap = getHttpBitmap(findItem.getImgUrl());
             ((DefaultViewHolder) holder).img .setImageBitmap(bitmap);	//设置Bitmap
@@ -163,7 +168,7 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public void isShowFooter(boolean mShowFooter){this.mShowFooter = mShowFooter;}
 
     //判断是否显示底部,数据来自全局变量
-    public boolean ismShowFooter(){return this.mShowFooter;}
+    public boolean isShowFooter(){return this.mShowFooter;}
 
     //底部布局的ViewHolder
     public class FooterViewHolder extends RecyclerView.ViewHolder
@@ -171,6 +176,12 @@ public class FindAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         public FooterViewHolder(View view){
             super(view);
         }
+    }
+
+    //设置一个填充ViewHolder
+    public class PadViewHolder extends RecyclerView.ViewHolder
+    {
+        public PadViewHolder(View view){ super(view);}
     }
 
     //默认布局的ViewHolder

@@ -49,8 +49,8 @@
     <color name="menu_left_item_text_normal">#000000</color>
 
     <!-- find页面子元素中相关样式颜色 -->
-    <color name="find_item_text1_color">#000000</color>
-    <color name="find_item_text2_color">#333333</color>
+    <color name="find_item_text1_color">#333333</color>
+    <color name="find_item_text2_color">#999999</color>
     <color name="find_item_tag_background_color">#333333</color>
     <color name="find_item_tag_text_color">#ffffff</color>
 </resources>
