@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.app.bm.bm.R;
 
-public class PersonalMenuDefault extends Fragment {
+public class PersonalMenuDefaultFragment extends Fragment {
     private RelativeLayout itemMyOrder;         //我的订单
     private RelativeLayout itemMyCoupon;        //我的优惠券
     private RelativeLayout itemMyGold;          //我的金币
