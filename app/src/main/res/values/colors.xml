@@ -61,4 +61,7 @@
     <color name="personal_menu_item_text">#999999</color>
     <color name="personal_header_name">#333333</color>
     <color name="personal_header_signature">#898989</color>
+
+    <!-- location 页面相关的颜色 -->
+    <color name="location_button_background">#f6f6f6</color>
 </resources>

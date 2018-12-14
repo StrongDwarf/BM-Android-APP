@@ -28,4 +28,6 @@
 
     <dimen name="page_left">20dp</dimen>
     <dimen name="page_right">20dp</dimen>
+
+
 </resources>
