@@ -25,4 +25,7 @@
     <dimen name="personal_item_from_page_right">14dp</dimen>
     <dimen name="personal_item_from_page_top">16dp</dimen>
     <dimen name="personal_item_from_page_bottom">16dp</dimen>
+
+    <dimen name="page_left">20dp</dimen>
+    <dimen name="page_right">20dp</dimen>
 </resources>

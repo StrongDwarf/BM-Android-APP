@@ -16,8 +16,7 @@
         <padding
             android:top="@dimen/personal_item_from_page_top"
             android:bottom="@dimen/personal_item_from_page_bottom"
-            android:right="@dimen/personal_item_from_page_right"
-            android:left="@dimen/personal_item_from_page_left"/>
+            />
     </shape>
 </item>
 </layer-list>

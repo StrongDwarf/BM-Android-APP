@@ -4,6 +4,5 @@
     <padding
         android:top="4dp"
         android:bottom="4dp"
-        android:left="@dimen/personal_item_from_page_left"
         android:right="@dimen/personal_item_from_page_right"/>
 </shape>

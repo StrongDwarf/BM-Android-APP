@@ -207,8 +207,8 @@ tools:context="com.app.bm.bm.MainActivity">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="@dimen/page_depart_from_screen_right"
-            android:paddingLeft="@dimen/page_depart_from_screen_left"
+            android:paddingRight="@dimen/page_right"
+            android:paddingLeft="@dimen/page_left"
             android:paddingBottom="30dp"
             android:orientation="vertical">
             <RelativeLayout
