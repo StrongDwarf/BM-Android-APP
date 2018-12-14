@@ -18,11 +18,11 @@ import com.app.bm.bm.entity.LocationItem;
 
 import java.util.List;
 
-public class LocationListviewAdapter extends BaseAdapter{
+public class LocationThemeListviewAdapter extends BaseAdapter{
     private List<LocationItem> locationItems;
     private LayoutInflater inflater;
 
-    public LocationListviewAdapter(Context context, List<LocationItem> locationItems){
+    public LocationThemeListviewAdapter(Context context, List<LocationItem> locationItems){
         inflater = LayoutInflater.from(context);
         this.locationItems = locationItems;
     }
@@ -51,7 +51,7 @@ public class LocationListviewAdapter extends BaseAdapter{
         if(convertView ==null){
             viewHolder = new ViewHolder();
             //xml文件加载成View
-            convertView = inflater.inflate(R.layout.item_location,parent,false);
+            convertView = inflater.inflate(R.layout.item_theme,parent,false);
 
             viewHolder.linearLayout = (LinearLayout) convertView.findViewById(R.id.location_linearlayout);
             viewHolder.textView = (TextView) convertView.findViewById(R.id.location_title);

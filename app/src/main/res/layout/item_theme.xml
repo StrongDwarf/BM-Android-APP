@@ -9,14 +9,29 @@
     android:paddingBottom="20dp"
     android:background="@drawable/elem_bottom_line_black_default"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/location_title"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="亚洲"
-        android:paddingBottom="20dp"
-        />
+        android:layout_marginBottom="20dp"
+        >
+        <TextView
+            android:id="@+id/location_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="亚洲"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/location_title"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:paddingTop="5dp"
+            android:src="@drawable/ic_right"/>
+    </RelativeLayout>
+
     <com.app.bm.bm.entity.ElemGridView
         android:id="@+id/location_gridview"
         android:layout_width="match_parent"

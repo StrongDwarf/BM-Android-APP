@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.app.bm.bm.MainActivity;
 import com.app.bm.bm.R;
 import com.app.bm.bm.adapter.LocationListviewAdapter;
+import com.app.bm.bm.adapter.LocationThemeListviewAdapter;
 import com.app.bm.bm.entity.ButtonItem;
 import com.app.bm.bm.entity.LocationItem;
 
@@ -22,7 +23,7 @@ import java.util.List;
 public class PageTheme extends Fragment {
 
     private ListView listView;
-    private LocationListviewAdapter locationListviewAdapter;
+    private LocationThemeListviewAdapter locationThemeListviewAdapter;
     private List<LocationItem> locationItems;
 
     @Override
@@ -32,8 +33,8 @@ public class PageTheme extends Fragment {
         initData();
 
         listView = (ListView)rootView.findViewById(R.id.location_listview);
-        locationListviewAdapter = new LocationListviewAdapter(this.getContext(),locationItems);
-        listView.setAdapter(locationListviewAdapter);
+        locationThemeListviewAdapter = new LocationThemeListviewAdapter(this.getContext(),locationItems);
+        listView.setAdapter(locationThemeListviewAdapter);
 
         //listView.setOnItemClickListener(onItemClickListener);
         return rootView;
@@ -52,10 +53,10 @@ public class PageTheme extends Fragment {
         for(int i=0;i<5;i++){
             List<ButtonItem> buttonItems = new ArrayList<>();
             for(int j=0;j<10;j++){
-                ButtonItem buttomItem = new ButtonItem(i*j,"item"+j);
+                ButtonItem buttomItem = new ButtonItem(i*j,"卡莎布兰卡"+j);
                 buttonItems.add(buttomItem);
             }
-            LocationItem locationItem = new LocationItem(i,"日本",buttonItems);
+            LocationItem locationItem = new LocationItem(i,"香港",buttonItems);
             locationItems.add(locationItem);
         }
     }
