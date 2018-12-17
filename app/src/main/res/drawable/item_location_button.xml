@@ -5,6 +5,4 @@
         android:radius="2dp"/>
     <solid
         android:color="@color/location_button_background"></solid>
-
-
 </shape>

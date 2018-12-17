@@ -1,5 +1,5 @@
-<!--<?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<!--<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/customize_background3"
@@ -7,19 +7,83 @@
     android:text="@string/customize"
     android:id="@+id/fa_customize"/> -->
 
-<?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
     <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@mipmap/customize_background3"
         android:scaleType = "centerCrop"
         />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/customize_background2"
+        android:scaleType = "centerCrop"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/customize_background1"
+        android:scaleType = "centerCrop"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/position_top"
+        android:layout_marginTop="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:text="私人定制"
+            android:textSize="40dp"
+            android:textColor="#ffffff"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:text="私人定制"
+            android:textSize="40dp"
+            android:textColor="#ffffff"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:text="这里有一帮懂旅行的人"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
 
-</FrameLayout>
+            android:text="带你看不一样的世界"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/start_my_customize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开启我的私人定制之旅"
+        android:background="@drawable/button_customize_1"
+        android:textColor="#ffffff"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/position_bottom"
+        android:layout_marginBottom="60dp"/>
+    <TextView
+        android:id="@+id/position_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_alignParentBottom="true"/>
+    <TextView
+        android:id="@+id/position_top"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_alignParentTop="true"/>
+</RelativeLayout>
 
 
