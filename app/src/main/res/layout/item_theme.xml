@@ -3,11 +3,11 @@
     android:id="@+id/location_linearlayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#fff"
     android:paddingRight="@dimen/page_right"
     android:paddingLeft="@dimen/page_left"
     android:paddingTop="20dp"
-    android:paddingBottom="20dp"
-    android:background="@drawable/elem_bottom_line_black_default"
+
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,5 +40,7 @@
         android:verticalSpacing="20dp"
         android:horizontalSpacing="20dp"
         android:scrollbars="none"
+        android:paddingBottom="20dp"
+        android:background="@drawable/elem_bottom_line_black_default"
         ></com.app.bm.bm.entity.ElemGridView>
 </LinearLayout>
