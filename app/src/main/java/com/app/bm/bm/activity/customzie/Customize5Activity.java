@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.app.bm.bm.R;
 
-public class CustomizeSuccessActivity extends FragmentActivity {
+public class Customize5Activity extends FragmentActivity {
     private Toolbar toolbar;        //顶部导航条
 
     @Override
@@ -24,7 +24,7 @@ public class CustomizeSuccessActivity extends FragmentActivity {
             Transition slide = TransitionInflater.from(this).inflateTransition(R.transition.slide);
             getWindow().setEnterTransition(slide);
         }
-        setContentView(R.layout.activity_customize_success);
+        setContentView(R.layout.activity_customize5);
 
         //初始化导航条
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -32,19 +32,19 @@ public class CustomizeSuccessActivity extends FragmentActivity {
         toolbar.setNavigationOnClickListener(navOnClickListener);
 
         //添加底部按钮监听
-        findViewById(R.id.next_step).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_confirm).setOnClickListener(onClickListener);
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch(v.getId()){
-                case R.id.next_step:
-                    /*
-                    Intent intent = new Intent(CustomizeSuccessActivity.this,Customize3Activity.class);
-                    startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(CustomizeSuccessActivity.this).toBundle());
+                case R.id.btn_confirm:
+
+                    Intent intent = new Intent(Customize5Activity.this,CustomizeSuccessActivity.class);
+                    startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(Customize5Activity.this).toBundle());
                     break;
-                    */
+
             }
         }
     };

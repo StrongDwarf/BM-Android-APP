@@ -42,11 +42,11 @@ public class Customize4Activity extends FragmentActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.next_step:
-                    /*
-                    Intent intent = new Intent(Customize2Activity.this, Customize3Activity.class);
-                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(Customize2Activity.this).toBundle());
+
+                    Intent intent = new Intent(Customize4Activity.this, Customize5Activity.class);
+                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(Customize4Activity.this).toBundle());
                     break;
-                    */
+
             }
         }
     };
