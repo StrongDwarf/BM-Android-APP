@@ -182,7 +182,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#c04374"
-                android:layout_margin="20dp"
+                android:layout_margin="30dp"
                 android:textColor="#fff"
                 android:text="下一步"/>
             <TextView

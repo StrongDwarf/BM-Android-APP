@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -79,15 +80,36 @@ public class Customize1Activity extends FragmentActivity {
 
     //初始化数据
     private void initData(){
+        String[][] locationDatalists = new String[][]{
+                {"亚洲","欧美","海岛"},
+                {"日本","巴厘岛","新加坡","越南","马来西亚","泰国","斯里兰卡","柬埔寨","坦桑尼亚","北极"},
+                {"欧洲","美国","加拿大","南美","土耳其"},
+                {"毛里求斯","马尔代夫","斐济","塞舌尔共和国","塞班岛"}};
+
         locationItems=new ArrayList<>();
-        for(int i=0;i<5;i++){
+        int length = locationDatalists[0].length+1;
+        for(int i=1;i<length;i++){
             List<ButtonItem> buttonItems = new ArrayList<>();
-            for(int j=0;j<3;j++){
-                ButtonItem buttomItem = new ButtonItem(i*j,"item"+j);
+            int temp = locationDatalists[i].length - 1;
+            for(int j=0;j<temp;j++){
+                ButtonItem buttomItem = new ButtonItem(j,locationDatalists[i][j]);
                 buttonItems.add(buttomItem);
             }
-            LocationItem locationItem = new LocationItem(i,"日本",buttonItems);
+            LocationItem locationItem = new LocationItem(i,locationDatalists[0][i-1],buttonItems);
             locationItems.add(locationItem);
         }
+
+        /*
+        for(int i=0;i<5;i++){
+            List<ButtonItem> buttonItems = new ArrayList<>();
+            String[] lists = new String[]{"日本","巴厘岛","新加坡","越南","马来西亚","泰国","斯里兰卡","柬埔寨","坦桑尼亚","北极"};
+            for(int j=0;j<lists.length;j++){
+                ButtonItem buttomItem = new ButtonItem(j,lists[j]);
+                buttonItems.add(buttomItem);
+            }
+            LocationItem locationItem = new LocationItem(i,"亚洲",buttonItems);
+            locationItems.add(locationItem);
+        }
+        */
     }
 }

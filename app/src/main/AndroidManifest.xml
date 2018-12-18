@@ -19,6 +19,7 @@
         <activity android:name=".activity.customzie.Customize1Activity"></activity>
         <activity android:name=".activity.customzie.Customize2Activity"></activity>
         <activity android:name=".activity.customzie.Customize3Activity"></activity>
+        <activity android:name=".activity.customzie.Customize4Activity"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

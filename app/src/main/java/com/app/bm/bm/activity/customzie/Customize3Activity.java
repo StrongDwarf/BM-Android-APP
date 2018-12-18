@@ -64,7 +64,7 @@ public class Customize3Activity extends FragmentActivity {
                     startActivity(intent);
                     overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                     */
-                    Intent intent = new Intent(Customize3Activity.this,Customize2Activity.class);
+                    Intent intent = new Intent(Customize3Activity.this,Customize4Activity.class);
                     startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(Customize3Activity.this).toBundle());
                     break;
             }
