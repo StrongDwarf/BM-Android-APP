@@ -35,13 +35,33 @@
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:scrollbars="none"
         android:fadingEdge="vertical"
         >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#fff">
+        <com.app.bm.bm.entity.ElemListView
+            android:layout_marginTop="50dp"
+            android:id="@+id/location_listview"
+            android:padding="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.app.bm.bm.entity.ElemListView>
 
-
+            <Button
+                android:id="@+id/next_step"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="#c04374"
+                android:layout_margin="20dp"
+                android:textColor="#fff"
+                android:text="下一步"/>
+    </LinearLayout>
     </ScrollView>
 </android.support.design.widget.CoordinatorLayout>

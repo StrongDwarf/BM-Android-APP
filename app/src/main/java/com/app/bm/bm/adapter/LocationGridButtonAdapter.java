@@ -38,7 +38,7 @@ public class LocationGridButtonAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
+    public View getView(final int position, View convertView, ViewGroup parent){
         ViewHolder viewHolder;
         if(convertView == null){
             viewHolder = new ViewHolder();
@@ -50,7 +50,12 @@ public class LocationGridButtonAdapter extends BaseAdapter{
         }else{
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        viewHolder.button.setOnClickListener(onClickListener);
+        viewHolder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("xiaobaicai","点击了"+position+"个");
+            }
+        });
         viewHolder.button.setText(buttonItemList.get(position).getText());
         return convertView;
     }
@@ -58,7 +63,7 @@ public class LocationGridButtonAdapter extends BaseAdapter{
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Log.i("xiaobaicai",String.valueOf(v.getId()));
+
         }
     };
 

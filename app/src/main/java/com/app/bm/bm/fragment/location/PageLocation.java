@@ -35,16 +35,8 @@ public class PageLocation extends Fragment {
         locationListviewAdapter = new LocationListviewAdapter(this.getContext(),locationItems);
         listView.setAdapter(locationListviewAdapter);
 
-        //listView.setOnItemClickListener(onItemClickListener);
         return rootView;
     }
-
-    public AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Log.i("xiaobaicai","点击了"+position);
-        }
-    };
 
     //初始化数据
     private void initData(){

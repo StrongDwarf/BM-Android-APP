@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.app.bm.bm.MainActivity">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/elem_bottom_line_black"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <!-- 顶部导航条 -->
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextAppearance="@style/bmTextTitleAppearance">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:singleLine="true"
+                android:background="@color/toolbar_header_background"
+                android:textColor="@color/toolbar_header_text"
+                android:textSize="@dimen/toolbar_header_text_size"
+                android:text="服务标准"/>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+
+    <!-- RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#00ffffff"
+        -->
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:scrollbars="none"
+        android:fadingEdge="vertical"
+        android:background="#fff"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <com.app.bm.bm.entity.ElemListView
+                android:layout_marginTop="50dp"
+                android:id="@+id/location_listview"
+                android:padding="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></com.app.bm.bm.entity.ElemListView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="@dimen/page_left"
+                android:layout_marginRight="@dimen/page_right">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textSize="16dp"
+                    android:textColor="#333333"
+                    android:text="其他需求"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:singleLine="false"
+                    android:background="@drawable/elem_edittext"
+                    android:lines="4"/>
+                <Button
+                    android:id="@+id/next_step"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#c04374"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="60dp"
+                    android:textColor="#fff"
+                    android:text="下一步"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>
+
