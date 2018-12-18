@@ -15,6 +15,7 @@ import android.widget.ListView;
 import com.app.bm.bm.MainActivity;
 import com.app.bm.bm.R;
 import com.app.bm.bm.adapter.LocationListviewAdapter;
+import com.app.bm.bm.dataitem.CustomizeOrderData;
 import com.app.bm.bm.entity.ButtonItem;
 import com.app.bm.bm.entity.ElemListView;
 import com.app.bm.bm.entity.LocationItem;
@@ -27,6 +28,7 @@ public class Customize1Activity extends FragmentActivity {
     private ElemListView listView;      //页面显示区域
     private LocationListviewAdapter locationListviewAdapter;        //适配器
     private List<LocationItem> locationItems;           //数据
+    private CustomizeOrderData customizeOrderData;      //私人定制订单数据
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,10 @@ public class Customize1Activity extends FragmentActivity {
             getWindow().setEnterTransition(slide);
         }
         setContentView(R.layout.activity_customize1);
+
+        //创建私人定制订单数据
+        customizeOrderData = new CustomizeOrderData();
+
 
         //初始化数据
         initData();

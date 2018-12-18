@@ -16,7 +16,9 @@ public class CustomizeOrderData{
     private String endFitAnswer;
     private String otherNeed;
 
-    public CustomizeOrderData(){}
+    public CustomizeOrderData(){
+        this.numAdult = 2;
+    }
 
     public CustomizeOrderData(String id,String endCity,String startCity,String startTime,String endTime,
                               int numAdult,int numChild,String name,int phone,String email,String wechatNumber,
@@ -165,6 +167,15 @@ public class CustomizeOrderData{
 
     public String getWechatNumber() {
         return wechatNumber;
+    }
+
+
+    @Override
+    public String toString(){
+        return "CustomizeorderData{"+"id='"+id+"',endCity='"+endCity+"',startCity='"+startCity+"',startTime='"
+                +startTime+"',endTime='"+endTime+"',numAdult="+numAdult+",numChild="+numChild+",name='"+name+
+                "',phone="+phone+",email='"+email+"',wechatNumber='"+wechatNumber+"',startFitAnswer='"+startFitAnswer+
+                "',endFitAnswer='"+endFitAnswer+"',otherNeed='"+otherNeed+"'}";
     }
 
 }

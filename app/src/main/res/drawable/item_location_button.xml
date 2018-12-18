@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <corners
-        android:radius="2dp"/>
-    <solid
-        android:color="@color/location_button_background"></solid>
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 选中状态显示 -->
+    <item android:drawable="@drawable/item_location_location_select" android:state_selected="true"/>
+    <!--非选中状态显示-->
+    <item android:drawable="@drawable/item_location_location_normal"/>
+</selector>

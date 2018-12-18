@@ -64,4 +64,9 @@
 
     <!-- location 页面相关的颜色 -->
     <color name="location_button_background">#f6f6f6</color>
+
+    <color name="button_primary">#c04374</color>
+
+    <color name="location_button_text_normal">#979797</color>
+    <color name="location_button_text_select">#ffffff</color>
 </resources>

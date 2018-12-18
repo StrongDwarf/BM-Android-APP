@@ -53,6 +53,13 @@ public class LocationGridButtonAdapter extends BaseAdapter{
         viewHolder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                /**
+                 * 处理点击逻辑
+                 */
+                v.setSelected(true);
+
+
                 Log.i("xiaobaicai","点击了"+position+"个");
             }
         });

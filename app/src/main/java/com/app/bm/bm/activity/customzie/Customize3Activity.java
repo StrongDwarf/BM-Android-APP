@@ -79,15 +79,29 @@ public class Customize3Activity extends FragmentActivity {
 
     //初始化数据
     private void initData(){
+        String[][] locationDatalists = new String[][]{
+                {"机票","酒店","房型","餐食","用车","签证"},
+                {"经济仓","商务仓","头等仓","自理"},
+                {"标准五星","豪华五星","四星","三星","名宿","自理"},
+                {"标准房","豪华房","海景房","家庭房","套房"},
+                {"中餐","当地风味餐","米其林餐","自理"},
+                {"全程包车","半包车","无需包车"},
+                {"代办签证","自理签证"}
+        };
+
         locationItems=new ArrayList<>();
-        for(int i=0;i<5;i++){
+        int length = locationDatalists[0].length+1;
+        for(int i=1;i<length;i++){
             List<ButtonItem> buttonItems = new ArrayList<>();
-            for(int j=0;j<4;j++){
-                ButtonItem buttomItem = new ButtonItem(i*j,"item"+j);
+            int temp = locationDatalists[i].length - 1;
+            for(int j=0;j<temp;j++){
+                ButtonItem buttomItem = new ButtonItem(j,locationDatalists[i][j]);
                 buttonItems.add(buttomItem);
             }
-            LocationItem locationItem = new LocationItem(i,"日本",buttonItems);
+            LocationItem locationItem = new LocationItem(i,locationDatalists[0][i-1],buttonItems);
             locationItems.add(locationItem);
         }
+
+
     }
 }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid
-        android:color="#f6f6f6" />
-    <padding
-        android:top="8dp"
-        android:bottom="8dp" />
     <corners
         android:radius="2dp"/>
+    <solid
+        android:color="@color/location_button_background"></solid>
+
 </shape>

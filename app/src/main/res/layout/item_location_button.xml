@@ -8,6 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@drawable/item_location_button"
-        android:textColor="#979797"
+        android:textColor="@drawable/item_location_button_text"
         android:text="测试"/>
 </LinearLayout>
