@@ -52,26 +52,6 @@ tools:context="com.app.bm.bm.MainActivity">
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text=""/>
-        <!-- 顶部导航条
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/elem_bottom_line_black"
-            app:titleTextAppearance="@style/bmTextTitleAppearance">
-
-            <TextView
-                android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:singleLine="true"
-                android:background="@color/toolbar_header_background"
-                android:textColor="@color/toolbar_header_text"
-                android:textSize="@dimen/toolbar_header_text_size"
-                android:text="@string/personal"/>
-        </android.support.v7.widget.Toolbar>
--->
 
         <!-- 头像区域 -->
         <FrameLayout
