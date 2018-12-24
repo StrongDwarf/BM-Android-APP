@@ -1,11 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/holo_green_light"
-    android:gravity="center"
-    android:text="@string/location"
-    android:id="@+id/fa_location"/-->
 
 <android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -18,7 +11,8 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white_normal">
+        android:background="@color/white_normal"
+        app:elevation="0dp">
 
         <android.support.design.widget.TabLayout
             android:id="@+id/location_tabLayout"
