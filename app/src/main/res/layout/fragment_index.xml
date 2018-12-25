@@ -144,11 +144,12 @@
 
                 </RelativeLayout>
                 <GridView
-                    android:id="@+id/gv_interst_theme"
+                    android:id="@+id/index_gv_interst_theme"
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="20dp"
+                    android:numColumns="4"
                     android:background="@drawable/elem_bottom_line_black"></GridView>
                 <TextView
                     android:layout_width="wrap_content"
@@ -158,9 +159,75 @@
                     android:textColor="#333333"
                     android:layout_marginTop="40dp"/>
                 <ListView
+                    android:id="@+id/index_lv_limie_select"
                     android:background="#f3f3f3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"></ListView>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:text="斑马发现"
+                    android:textSize="18dp"
+                    android:textColor="#333333"/>
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:scrollbars="none"
+                    android:paddingBottom="30dp"
+                    android:background="@drawable/elem_bottom_line_black"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp">
+                            <ImageView
+                                android:layout_width="190dp"
+                                android:layout_height="110dp"
+                                android:background="#f2f2f2"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="自驾|穿越湖泊和中士"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp">
+                            <ImageView
+                                android:layout_width="190dp"
+                                android:layout_height="110dp"
+                                android:background="#f2f2f2"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="自驾|穿越湖泊和中士"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="190dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginRight="20dp">
+                            <ImageView
+                                android:layout_width="190dp"
+                                android:layout_height="110dp"
+                                android:background="#f2f2f2"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="自驾|穿越湖泊和中士"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </HorizontalScrollView>
             </LinearLayout>
         </LinearLayout>
 
