@@ -1,42 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".main.MainActivity">
-    <ImageView
-        android:id="@+id/image"
+    android:layout_width="match_parent">
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:id="@+id/main_container"
+        android:layout_above="@+id/view_line"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view_line"
+        android:background="#DCDBDB"
+        android:layout_above="@+id/rl_bottom"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <Button
-            android:id="@+id/get"
-            android:layout_width="wrap_content"
+        android:id="@+id/rl_bottom"
+        android:layout_alignParentBottom="true"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="#f2f2f2"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="获取图片"/>
-        <Button
-            android:id="@+id/get_data"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_index"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_tab_index_img_selector"
+            android:drawablePadding="@dimen/main_tab_item_image_and_text"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="首页"
+            android:textColor="@drawable/main_tabitem_txt_sel"
+            android:textSize="@dimen/main_tab_item_text_size"/>
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="get获取数据"/>
-        <Button
-            android:id="@+id/post_data"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_discover"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_tab_discover_img_selector"
+            android:drawablePadding="@dimen/main_tab_item_image_and_text"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="发现"
+            android:textColor="@drawable/main_tabitem_txt_sel"
+            android:textSize="@dimen/main_tab_item_text_size"/>
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="post获取数据"/>
+            android:id="@+id/tv_location"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_tab_location_img_selector"
+            android:drawablePadding="@dimen/main_tab_item_image_and_text"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="目的地"
+            android:textColor="@drawable/main_tabitem_txt_sel"
+            android:textSize="@dimen/main_tab_item_text_size"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_customize"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_tab_customize_img_selector"
+            android:drawablePadding="@dimen/main_tab_item_image_and_text"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="定制"
+            android:textColor="@drawable/main_tabitem_txt_sel"
+            android:textSize="@dimen/main_tab_item_text_size"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_personal"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/main_tab_personal_img_selector"
+            android:drawablePadding="@dimen/main_tab_item_image_and_text"
+            android:focusable="true"
+            android:gravity="center"
+            android:text="个人中心"
+            android:textColor="@drawable/main_tabitem_txt_sel"
+            android:textSize="@dimen/main_tab_item_text_size"/>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/tv_get"
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="a"/>
 
 </RelativeLayout>

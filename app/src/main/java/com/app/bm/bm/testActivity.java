@@ -41,6 +41,7 @@ import java.util.function.Function;
 import static com.app.bm.bm.common.Services.getImage;
 
 public class testActivity extends AppCompatActivity {
+    /*
     private String str;
     private MyHandler handler1;
     private GetDate getDate;
@@ -62,9 +63,11 @@ public class testActivity extends AppCompatActivity {
         }
     }
 
+*/
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        /*
         handler1 = new MyHandler();
 
         handler2 = new MyHandler1();
@@ -88,7 +91,7 @@ public class testActivity extends AppCompatActivity {
                         Message msg = new Message();
                         msg.obj = getImage(path);
                         handler1.sendMessage(msg);
-                        */
+                        */ /*
                     }
                 }).start();
             }
@@ -107,12 +110,15 @@ public class testActivity extends AppCompatActivity {
                         msg.obj = getImage(path);
                         handler1.sendMessage(msg);
                         */
+                        /*
                     }
                 }).start();
             }
         });
+*/
     }
 
+    /*
     protected class GetDate{
         private String name;
 
@@ -141,5 +147,5 @@ public class testActivity extends AppCompatActivity {
             return "name='"+name+'&';
         }
     }
-
+*/
 }

@@ -1,0 +1,16 @@
+<resources>
+    <!-- mian页面相关样式 -->
+    <dimen name="main_tab_item_image_and_text">3dp</dimen>
+    <!-- 底部导航条字的大小 -->
+    <dimen name="main_tab_item_text_size">10sp</dimen>
+
+    <!-- 顶部导航条字的大小 -->
+    <dimen name="toolbar_header_text_size">16sp</dimen>
+
+    <dimen name="page_left">20dp</dimen>
+    <dimen name="page_right">20dp</dimen>
+
+    <dimen name="page_depart_from_screen_left">8dp</dimen>
+    <dimen name="page_depart_from_screen_right">8dp</dimen>
+
+</resources>
