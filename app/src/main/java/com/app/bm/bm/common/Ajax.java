@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -22,40 +23,16 @@ import static com.app.bm.bm.common.Services.getImage;
 public class Ajax{
 
     /**
-     * get方法获取请求
+     * get请求
+     * @param path url 路径
+     * @param cls 获取数据后的
+     * @param handler 获取数据后的callback
      */
-    public static void get(String path, Object o, Class cls, Handler handler){
+    public static void get(String path, Class cls, Handler handler){
         //get方式提交就是url拼接的方式
         //String path="http://192.168.43.74:8083/test?userid="+userid;
 
-        String str = "";
-        Log.i("xiaobaicai","start get");
         try{
-            str =str + JSON.toString(o);
-            Log.i("xiaobaicai",JSON.toString(o));
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-        path = path +"?"+str;
-        Log.i("xiaobaicai","path:"+path);
-        try{
-            /*
-            URL url = new URL(path);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setConnectTimeout(5000);  //设置连接超时时间
-            connection.setRequestMethod("GET");  //设置以Get方式提交数据
-            Log.i("xiaobaicai","设置请求完毕");
-            if(connection.getResponseCode() == 200){
-                //请求成功
-                Log.i("xiaobaicai","请求成功");
-                InputStream is = connection.getInputStream();
-                String resultStr = dealResponseResult(is);
-                Object obj = JSON.parse(resultStr,cls);
-                Message msg = new Message();
-                msg.obj = obj;
-                handler.sendMessage(msg);
-            }*/
             Log.i("xiaobaicai","创建请求");
             HttpURLConnection conn = (HttpURLConnection) new URL(path).openConnection();
             conn.setConnectTimeout(5000);
@@ -70,7 +47,52 @@ public class Ajax{
                 Message msg = new Message();
                 msg.obj = obj;
                 handler.sendMessage(msg);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
+    /**
+     * post方法获取请求
+     *
+     */
+    public static void post(String path, Object o, Class cls, Handler handler){
+        //get方式提交就是url拼接的方式
+        //String path="http://192.168.43.74:8083/test?userid="+userid;
+
+        String str = "";
+        try{
+            str =str + JSON.toString(o);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try{
+            URL url= new URL(path);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setConnectTimeout(5000);  //设置连接超时时间
+            connection.setRequestMethod("POST");  //设置一post方式提交数据
+            String data = str;
+
+            //至少要设置的两个请求头
+            connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+            connection.setRequestProperty("Content-Length",data.length()+"");
+
+            //post方式实际上是以流的方式提交给服务器
+            connection.setDoOutput(true);
+            OutputStream outputStream = connection.getOutputStream();
+            outputStream.write(data.getBytes());
+
+            if(connection.getResponseCode() == 200){
+                Log.i("xiaobaicai","请求成功");
+                InputStream is = connection.getInputStream();
+
+                String resultStr = dealResponseResult(is);
+                Object obj = JSON.parse(resultStr,cls);
+                Message msg = new Message();
+                msg.obj = obj;
+                handler.sendMessage(msg);
             }
         }catch (Exception e){
             e.printStackTrace();

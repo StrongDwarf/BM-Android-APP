@@ -40,7 +40,7 @@ import java.util.function.Function;
 
 import static com.app.bm.bm.common.Services.getImage;
 
-public class MainActivity extends AppCompatActivity {
+public class testActivity extends AppCompatActivity {
     private String str;
     private MyHandler handler1;
     private GetDate getDate;
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     class MyHandler1 extends Handler{
         @Override
         public void handleMessage(Message msg) {
-            TextView textView = (TextView)findViewById(R.id.tv_1);
+            TextView textView = (TextView)findViewById(R.id.tv_get);
             textView.setText((String)msg.obj.toString());
         }
     }
@@ -70,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
         handler2 = new MyHandler1();
         Log.i("xiaobaicai","hello");
         getDate = new GetDate("xiao");
-        Ajax.get("http://192.168.43.74:9001/test",getDate,GetDate.class,handler2);
+        Ajax.get("http://192.168.43.74:9001/test",GetDate.class,handler2);
 
 
-        Button button = (Button) findViewById(R.id.test);
+        Button button = (Button) findViewById(R.id.get);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,9 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-
-                        Ajax.get("http://192.168.43.74:9001/test",getDate,GetDate.class,handler2);
-
+                        Ajax.get("http://192.168.43.74:9001/test",GetDate.class,handler2);
                         /*
                         Log.i("xiaobaicai","run");
                         String path = "http://192.168.43.74:8080/hello.png";
@@ -93,7 +91,24 @@ public class MainActivity extends AppCompatActivity {
                         */
                     }
                 }).start();
-
+            }
+        });
+        findViewById(R.id.post_data).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Ajax.post("http://192.168.43.74:9001/test",getDate,GetDate.class,handler2);
+                        /*
+                        Log.i("xiaobaicai","run");
+                        String path = "http://192.168.43.74:8080/hello.png";
+                        Message msg = new Message();
+                        msg.obj = getImage(path);
+                        handler1.sendMessage(msg);
+                        */
+                    }
+                }).start();
             }
         });
     }
@@ -120,6 +135,10 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public String toString() {
             return "User{"+"name='"+name+'}';
+        }
+
+        public String toJSONStr(){
+            return "name='"+name+'&';
         }
     }
 
