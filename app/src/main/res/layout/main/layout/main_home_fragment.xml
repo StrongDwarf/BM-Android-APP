@@ -67,6 +67,7 @@
                     android:background="@drawable/elem_bottom_line_black"
                     >
                     <LinearLayout
+                        android:id="@+id/lasted_activity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -75,28 +76,34 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_marginRight="20dp">
+
                             <ImageView
                                 android:layout_width="190dp"
                                 android:layout_height="110dp"
-                                android:background="#f2f2f2"/>
+                                android:background="#f2f2f2" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:textSize="14dp"
+                                android:textColor="#333"
                                 android:text="自驾|穿越湖泊和中士"/>
                         </LinearLayout>
+
                         <LinearLayout
                             android:layout_width="190dp"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginRight="20dp">
+                            android:layout_marginRight="20dp"
+                            android:orientation="vertical">
+
                             <ImageView
                                 android:layout_width="190dp"
                                 android:layout_height="110dp"
-                                android:background="#f2f2f2"/>
+                                android:background="#f2f2f2" />
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="自驾|穿越湖泊和中士"/>
+                                android:text="自驾|穿越湖泊和中士" />
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="190dp"
@@ -143,14 +150,14 @@
                     </LinearLayout>
 
                 </RelativeLayout>
-                <GridView
+                <com.app.bm.bm.common.extend.elem.ElemGridView
                     android:id="@+id/index_gv_interst_theme"
                     android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="20dp"
                     android:numColumns="4"
-                    android:background="@drawable/elem_bottom_line_black"></GridView>
+                    android:background="@drawable/elem_bottom_line_black"></com.app.bm.bm.common.extend.elem.ElemGridView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

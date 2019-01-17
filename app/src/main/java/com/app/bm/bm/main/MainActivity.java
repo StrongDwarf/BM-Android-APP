@@ -1,12 +1,26 @@
 package com.app.bm.bm.main;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.app.bm.bm.R;
+import com.app.bm.bm.common.extend.AppCompatActivityWithNetWork;
+import com.app.bm.bm.common.tools.SDCardTools;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.BitmapCallback;
+
+import java.io.File;
 
 
 /**
@@ -46,6 +60,17 @@ public class MainActivity extends AppCompatActivity {
         tvPerson.setOnClickListener(tabClickListener);
         tvDiscover.setOnClickListener(tabClickListener);
         tvCustomize.setOnClickListener(tabClickListener);
+         int WRITE_EXTERNAL_STORAGE_REQUEST_CODE = 1;
+
+
+        while(ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    WRITE_EXTERNAL_STORAGE_REQUEST_CODE);
+        }
+
+
     }
 
 
@@ -152,4 +177,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
 }

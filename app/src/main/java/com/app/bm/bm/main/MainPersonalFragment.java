@@ -58,7 +58,7 @@ public class MainPersonalFragment extends Fragment {
         itemGotoAppstore.setOnClickListener(onClickListener);
         itemConnactService.setOnClickListener(onClickListener);
 
-        //
+
 
         return rootView;
     }
@@ -82,8 +82,8 @@ public class MainPersonalFragment extends Fragment {
     //根据用户是否登录加载不同fragment
     public void fragmentInit(){
         //获取登录状态
-        //SharedPreferences sp1 = this.getActivity().getSharedPreferences("filename",Context.MODE_PRIVATE);
-        //loginState = sp1.getBoolean("login_state",false);
+        SharedPreferences sp1 = this.getActivity().getSharedPreferences("filename",Context.MODE_PRIVATE);
+        loginState = sp1.getBoolean("login_state",false);
 
         //开启一个Fragment事务
         FragmentTransaction transaction = this.getActivity().getSupportFragmentManager().beginTransaction();
@@ -92,7 +92,7 @@ public class MainPersonalFragment extends Fragment {
         hideFragments(transaction);
 
         //根据登录状态初始化fragment，
-        if(Store.getInstance(this.getActivity()).getLoginState())
+        if(loginState)
         {
             if(personalUserintrAlreadLoggedFragment == null){
                 personalUserintrAlreadLoggedFragment = new PersonalUserintrAlreadLoggedFragment();

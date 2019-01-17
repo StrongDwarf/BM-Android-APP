@@ -16,4 +16,24 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <!-- 位于中心的popupwindow弹出时的动画 -->
+    <style name="popupwindow_center_anim_style">
+        <item name="android:windowEnterAnimation">@anim/popupwindow_center_show_anim</item>
+        <item name="android:windowExitAnimation">@anim/popupwindow_center_hidden_anim</item>
+    </style>
+
+    <!-- 输入验证码 -->
+    <declare-styleable name="vericationCodeInput">
+
+        <attr name="box" format="integer" />
+        <attr name="child_h_padding" format="dimension"/>
+        <attr name="child_v_padding" format="dimension"/>
+        <attr name="child_width" format="dimension"/>
+        <attr name="child_height" format="dimension"/>
+        <attr name="padding" format="dimension"/>
+        <attr name="box_bg_focus" format="reference"/>
+        <attr name="box_bg_normal" format="reference"/>
+        <attr name="inputType" format="string"/>
+    </declare-styleable>
+
 </resources>

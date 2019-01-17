@@ -11,6 +11,7 @@
     <!-- 主体背景颜色值 -->
     <item
         android:bottom="1px">
+
         <shape>
             <solid android:color="@color/white_normal" />
         </shape>
