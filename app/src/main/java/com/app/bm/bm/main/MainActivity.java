@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     //要切换显示的五个fragment
     private MainCustomizeFragment customizeFragment;
     private MainFindFragment discoverFragment;
-    private MainHomeFragment indexFragment;
+    private MainHomeFragment1 indexFragment;
     private MainDestinationFragment locationFragment;
     private MainPersonalFragment personalFragment;
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         tvCustomize = (TextView) findViewById(R.id.tv_customize);
 
         //默认加载首页
-        indexFragment = new MainHomeFragment();
+        indexFragment = new MainHomeFragment1();
         getSupportFragmentManager().beginTransaction().add(R.id.main_container,indexFragment).commit();
 
         tvIndex.setOnClickListener(tabClickListener);
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         hideFragments(transaction);//隐藏所有fragment
         if(resId==R.id.tv_index){//主页
             if(indexFragment==null){//如果为空先添加进来.不为空直接显示
-                indexFragment = new MainHomeFragment();
+                indexFragment = new MainHomeFragment1();
                 transaction.add(R.id.main_container,indexFragment);
             }else {
                 transaction.show(indexFragment);//显示首页的Fragment

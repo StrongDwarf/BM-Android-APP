@@ -18,8 +18,10 @@ import android.widget.Toast;
 import com.app.bm.bm.R;
 import com.app.bm.bm.common.apiUrls.ApiUrl;
 import com.app.bm.bm.common.datas.AjaxReceiveData;
+import com.app.bm.bm.common.datas.HomeBannerItemData;
 import com.app.bm.bm.common.items.HomeBannerItem;
 import com.app.bm.bm.common.tools.Ajax;
+import com.bumptech.glide.Glide;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 import com.zhouwei.mzbanner.holder.MZViewHolder;
@@ -37,7 +39,7 @@ public class HomeBannerFragment extends Fragment {
     public static final String TAG = "xiaobaicai";
     private MZBannerView mMZBanner;
 
-    private List<HomeBannerItem> homeBannerItemList;
+    private List<HomeBannerItemData> homeBannerItemList;
 
     private List<BannerViewHolder> bannerViewHolderList = new ArrayList<BannerViewHolder>();
 
@@ -48,7 +50,7 @@ public class HomeBannerFragment extends Fragment {
     public HomeBannerFragment(){}
 
     @SuppressLint("ValidFragment")
-    public HomeBannerFragment(List<HomeBannerItem> homeBannerItemList){
+    public HomeBannerFragment(List<HomeBannerItemData> homeBannerItemList){
         this.homeBannerItemList = homeBannerItemList;
     }
 
@@ -70,7 +72,7 @@ public class HomeBannerFragment extends Fragment {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if(position != curPosition){
                     tvBannerTitle.setText(homeBannerItemList.get(position).getTitle());
-                    tvBannerText.setText(homeBannerItemList.get(position).getIntro());
+                    tvBannerText.setText(homeBannerItemList.get(position).getSubtitle());
                     curPosition = position;
                 }
             }
@@ -99,20 +101,11 @@ public class HomeBannerFragment extends Fragment {
 
         //初始化banner下面的文字信息
         tvBannerTitle.setText(homeBannerItemList.get(curPosition).getTitle());
-        tvBannerText.setText(homeBannerItemList.get(curPosition).getIntro());
+        tvBannerText.setText(homeBannerItemList.get(curPosition).getSubtitle());
         curPosition = 0;
     }
 
-    public Boolean updateBannerImg(int i, Bitmap bitmap){
-        int length = bannerViewHolderList.size();
-        if(i<length){
-            bannerViewHolderList.get(i).mImageView.setImageBitmap(bitmap);
-            return true;
-        }
-        return false;
-    }
-
-    public static class BannerViewHolder implements MZViewHolder<HomeBannerItem> {
+    public static class BannerViewHolder implements MZViewHolder<HomeBannerItemData> {
         private ImageView mImageView;       //图片
         private TextView  titleView;        //内部标题
         private TextView  textView;         //内部正文
@@ -128,9 +121,10 @@ public class HomeBannerFragment extends Fragment {
         }
 
         @Override
-        public void onBind(Context context, int position, HomeBannerItem data) {
+        public void onBind(Context context, int position, HomeBannerItemData data) {
             // 数据绑定
-            mImageView.setImageBitmap(data.getImgData());
+            //mImageView.setImageBitmap(data.getImgData());
+            Glide.with(context).load(data.getImg()).placeholder(R.mipmap.banner1).into(mImageView);
             // titleView.setText(data.getInnerTitle());
             // textView.setText(data.getInnerIntro());
         }
