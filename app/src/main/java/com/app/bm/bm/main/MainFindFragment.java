@@ -12,23 +12,28 @@ import android.webkit.WebView;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import com.app.bm.bm.R;
+import com.app.bm.bm.common.adapter.FragmentAdapter;
+import com.app.bm.bm.find.FindAllFragment;
+import com.app.bm.bm.find.FindLookworldFragment;
+import com.app.bm.bm.find.FindRiseknowFragment;
+import com.app.bm.bm.find.FindTalentsayFragment;
 
 
 public class MainFindFragment extends Fragment {
 
-    /*
+
     private ViewPager vPager;
 
     private FindAllFragment findAllFragment;
     private FindLookworldFragment findLookworldFragment;
     private FindRiseknowFragment findRiseknowFragment;
     private FindTalentsayFragment findTalentsayFragment;
-    */
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.main_find_fragment, null);
-/*
+
         vPager = (ViewPager) rootView.findViewById(R.id.viewPager);
         vPager.setOffscreenPageLimit(3);
         vPager.setCurrentItem(0);
@@ -49,8 +54,6 @@ public class MainFindFragment extends Fragment {
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(vPager);
 
-
-*/
         return rootView;
     }
 

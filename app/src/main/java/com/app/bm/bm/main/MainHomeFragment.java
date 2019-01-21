@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import com.app.bm.bm.common.apiUrls.ApiUrl;
 import com.app.bm.bm.common.datas.AjaxReceiveData;
 import com.app.bm.bm.common.datas.EmptyData;
 import com.app.bm.bm.common.datas.HomeActivityItemData;
+import com.app.bm.bm.common.datas.HomeArticleListItemData;
 import com.app.bm.bm.common.datas.HomeBannerData;
 import com.app.bm.bm.common.datas.HomeBannerItemData;
 import com.app.bm.bm.common.datas.HomePageData;
@@ -52,6 +54,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 /*
 import com.app.bm.bm.adapter.IndexGridAdapter;
 import com.app.bm.bm.entity.IndexInterestItem;
@@ -84,6 +87,9 @@ public class MainHomeFragment extends Fragment {
     private HomePageData homePageData;              //首页数据
     private List<HomeBannerItem> homeBannerItemList;        //首页Banner数据
     private LinearLayout llElemListViewContainer;           //首页,限定甄选父容器
+    private LinearLayout banmaFindContainer;                //斑马发现父容器
+
+    private List<OneDimenImageView> twoDimenImageView;      //限定甄选,二维ImageView数组
 
     private HomeBannerFragment homeBannerFragment;
 
@@ -94,8 +100,12 @@ public class MainHomeFragment extends Fragment {
     public static final int UPDATE_BANNER_ITEM_BITMAP = 3;          //更新BANNER item
     public static final int ADD_ACTIVITY_ITEM = 4;          //添加近期活动子元素
     public static final int ADD_PRODUCT_LIST = 5;           //添加产品列表
+    public static final int UPDATE_PRODUCT_LIST_BITMAP = 6;    //更新产品列表中的图片,图片加载完成后执行
+    public static final int ADD_BANMA_FIND_ITEM = 7;            //添加斑马发现子元素
+
 
     private LayoutInflater inflater1;
+
 
 
     private Handler UIhandler = new Handler(){
@@ -122,23 +132,9 @@ public class MainHomeFragment extends Fragment {
                             ViewGroup.LayoutParams.WRAP_CONTENT));
                     break;
                 case ADD_PRODUCT_LIST:
-                    final UpdateProductData obj = (UpdateProductData) msg.obj;
-                    //先打印productListDataList的长度用于测试
+                    for(int j = 0;j<productListDataList.size();j++){
 
-                    Log.i("xiaobaicai","productListDataList0:"+productListDataList.get(0).getProductItemElemDataList().size());
-                    Log.i("xiaobaicai","productListDataList1:"+productListDataList.get(1).getProductItemElemDataList().size());
-                    Log.i("xiaobaicai","productListDataList2:"+productListDataList.get(2).getProductItemElemDataList().size());
-
-
-                    Boolean isPayload = true;           //是否挂载到UI界面上,
-                    for(int j = 0;j<productListDataList.get(obj.getI()).getProductItemElemDataList().size();j++){
-                        if(productListDataList.get(obj.getI()).getProductItemElemDataList().get(j).getImg() == null){
-                            isPayload = false;
-                        }
-                    }
-                    //如果所有的图片都不为空,挂载到UI界面上,
-                    if(isPayload){
-                        //先生成.
+                        //创建布局
                         LinearLayout linearLayout1 = new LinearLayout(getContext());
                         linearLayout1.setOrientation(LinearLayout.VERTICAL);
                         TextView textView1 = new TextView(getContext());
@@ -147,229 +143,144 @@ public class MainHomeFragment extends Fragment {
                         ViewGroup.LayoutParams tvlp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.WRAP_CONTENT);
                         ((LinearLayout.LayoutParams) tvlp).setMargins(0,getPixelsFromDp(40),0,0);
-                        textView1.setText(productListDataList.get(obj.getI()).getTitle());
+                        textView1.setText(productListDataList.get(j).getTitle());
                         textView1.setLayoutParams(tvlp);
                         linearLayout1.addView(textView1);
-                        for(int j = 0;j<productListDataList.get(obj.getI()).getProductItemElemDataList().size();j++){
+
+                        //新建一个一维ImageView数组
+                        OneDimenImageView oneDimenImageView = new OneDimenImageView();
+                        for(int k = 0;k<productListDataList.get(j).getProductItemElemDataList().size();k++){
+                            final int jTemp = j;
+                            final int kTemp = k;
                             View view1 = inflater1.inflate(R.layout.ele_product_default,null);
+                            //添加事件监听
                             view1.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Log.i("xiaobaicai","点击了product列表中的第:"+obj.getI()+"个");
+                                    //Log.i("xiaobaicai","点击了product第"+jTemp+"列表中的第:"+kTemp+"个");
+                                    Toast.makeText(getActivity(),"点击了product第"+jTemp+"列表中的第:"+kTemp+"个",Toast.LENGTH_SHORT).show();
                                 }
                             });
+                            /**
+                             * 处理数据
+                             */
+                            //先获取view1中的元素
+                            RelativeLayout rlContainer = view1.findViewById(R.id.product_rl_container);
+                            ImageView imageView = view1.findViewById(R.id.product_iv);
+                            TextView tipTag = view1.findViewById(R.id.product_tv_tag);
+                            TextView tvTitle = view1.findViewById(R.id.product_tv_title);
+                            TextView tvSubTitle = view1.findViewById(R.id.product_tv_subtitle);
+                            LinearLayout llTagContainer = view1.findViewById(R.id.ll_tag_container);
+                            TextView tvTagBlack1 = view1.findViewById(R.id.product_tv_tag_out_black_1);
+                            TextView tvTagBlack2 = view1.findViewById(R.id.product_tv_tag_out_black_2);
+                            TextView tvTagRed1 = view1.findViewById(R.id.product_tv_tag_out_regular_1);
+                            TextView tvPrice = view1.findViewById(R.id.product_tv_price);
+
+                            //将imageView插入到一维ImageView数组中
+                            oneDimenImageView.getOnedimenImageView().add(imageView);
+
+                            //根据数据对元素进行处理
+                            ProductItemElemData productItemElemData = productListDataList.get(j).getProductItemElemDataList().get(k);
+
+                            //imageView.setImageBitmap(productItemElemData.getImg());
+                            if (productItemElemData.getTip_mark() != null && productItemElemData.getTip_mark().length() > 0) {
+                                tipTag.setText(productItemElemData.getTip_mark());
+                            } else {
+                                rlContainer.removeView(tipTag);
+                            }
+                            tvTitle.setText(productItemElemData.getTitle());
+                            tvSubTitle.setText(productItemElemData.getSubtitle());
+                            tvPrice.setText(productItemElemData.getPrice());
+                            List<ProductMarkItem> markItems = productItemElemData.getMark();
+                            // List<Boolean> markIsUsed = new ArrayList<Boolean>();
+                            Boolean[] markIsUsedList = new Boolean[]{false, false, false};
+                            for (int n = 0; n < markItems.size(); n++) {
+                                if (markItems.get(n).getFlag() == 0) {
+                                    if (!markIsUsedList[0]) {
+                                        tvTagBlack1.setText(markItems.get(n).getName());
+                                        markIsUsedList[0] = true;
+                                    } else if (!markIsUsedList[1]) {
+                                        tvTagBlack2.setText(markItems.get(n).getName());
+                                        markIsUsedList[1] = true;
+                                    }
+                                } else {
+                                    if (!markIsUsedList[2]) {
+                                        tvTagRed1.setText(markItems.get(n).getName());
+                                        markIsUsedList[2] = true;
+                                    }
+                                }
+                            }
+                            for (int n = 0; n < markIsUsedList.length; n++) {
+                                if (!markIsUsedList[n]) {
+                                    if (n == 0) {
+                                        llTagContainer.removeView(tvTagBlack1);
+                                    } else if (n == 1) {
+                                        llTagContainer.removeView(tvTagBlack2);
+                                    } else if (n == 2) {
+                                        llTagContainer.removeView(tvTagRed1);
+                                    }
+                                }
+                            }
+
                             linearLayout1.addView(view1);
                         }
-
+                        //将一维数组插入到二维数组中,
+                        twoDimenImageView.add(oneDimenImageView);
+                        //将产品列表加入到页面容器中
                         llElemListViewContainer.addView(linearLayout1);
-                        //llElemListViewContainer.addView(getProductItemListLinearLayout(productListDataList.get(obj.getI()).getTitle(),productListDataList.get(obj.getI()).getProductItemElemDataList()));
                     }
                     break;
+                case UPDATE_PRODUCT_LIST_BITMAP:
+                    UpdateProductData obj = (UpdateProductData) msg.obj;
+                    Log.i("xiaobaicai","更新图片:i:"+obj.getI()+"j:"+obj.getJ());
+                    if(twoDimenImageView.get(obj.getI()).getOnedimenImageView().get(obj.getJ()) != null){
+                        twoDimenImageView.get(obj.getI()).getOnedimenImageView().get(obj.getJ()).setImageBitmap(obj.getBitmap());
+                        Log.i("xiaobaicai","更新完成");
+                    }
+                    break;
+                case ADD_BANMA_FIND_ITEM:
+                    LinearLayout linearLayout1 = getBannerFindItemLinearLayout(((AddBanmaFindData) msg.obj).getText(),((AddBanmaFindData) msg.obj).getBitmap(),((AddBanmaFindData) msg.obj).getUrl());
+                    banmaFindContainer.addView(linearLayout1);
+                    break;
+
             }
         }
     };
 
-    public LinearLayout getProductItemListLinearLayout(String title,List<ProductItemElemData> productItemElemDataList){
-        //先创建一个container
-        LinearLayout llContainer = new LinearLayout(getContext());
+    public LinearLayout getBannerFindItemLinearLayout(String text,Bitmap bitmap,final String url){
+        LinearLayout linearLayout = new LinearLayout(getContext());
+        ImageView imageView = new ImageView(getContext());
         TextView textView = new TextView(getContext());
 
-        llContainer.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-
-        ViewGroup.LayoutParams tvlp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        ((LinearLayout.LayoutParams) tvlp).setMargins(0,getPixelsFromDp(40),0,0);
-        textView.setLayoutParams(tvlp);
-        textView.setTextColor(getResources().getColor(R.color.text_light));
-        textView.setTextSize(18);
-        textView.setText(title);
-
-        llContainer.addView(textView);
-
-
-        for(int i =0;i<productItemElemDataList.size();i++){
-            llContainer.addView(getProductItemLinearLayout(productItemElemDataList.get(i)));
-        }
-        return llContainer;
-    }
-
-    public LinearLayout getProductItemLinearLayout(ProductItemElemData productItemElemData){
-
-
-        Log.i("xiaobaicai","tipMark-->"+productItemElemData.getTip_mark());
-        //新建对象
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        RelativeLayout rlContainer = new RelativeLayout(getContext());
-        ImageView imageView = new ImageView(getContext());
-        TextView tipTag = new TextView(getContext());
-        TextView tvTitle = new TextView(getContext());
-        TextView tvSubTitle = new TextView(getContext());
-        LinearLayout llTagContainer = new LinearLayout(getContext());
-        TextView tvTagBlack1 = new TextView(getContext());
-        TextView tvTagBlack2 = new TextView(getContext());
-        TextView tvTagRed1 = new TextView(getContext());
-        LinearLayout llPriceContainer = new LinearLayout(getContext());
-        TextView tvPrice = new TextView(getContext());
-        TextView tvPriceAdd = new TextView(getContext());
-
-        //帮助布局的元素
-
-        //设置样式
         linearLayout.setOrientation(LinearLayout.VERTICAL);
-        ViewGroup.LayoutParams lllp = new LinearLayout.LayoutParams(getPixelsFromDp(335),
-                getPixelsFromDp(339));
-        ((LinearLayout.LayoutParams) lllp).setMargins(0,getPixelsFromDp(20),0,0);
-        linearLayout.setBackground(getResources().getDrawable(R.drawable.elem_bottom_line_black));
+        ViewGroup.LayoutParams lllp = new LinearLayout.LayoutParams(getPixelsFromDp(190),
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        ((LinearLayout.LayoutParams) lllp).setMargins(0,0,getPixelsFromDp(20),0);
         linearLayout.setLayoutParams(lllp);
 
-        //图片和tiptap样式
-        imageView.setLayoutParams(new LinearLayout.LayoutParams(getPixelsFromDp(335),
-                getPixelsFromDp(220)));
-        ViewGroup.LayoutParams tipTaglp = new LinearLayout.LayoutParams(getPixelsFromDp(65),
-                getPixelsFromDp(22));
-        ((LinearLayout.LayoutParams) tipTaglp).setMargins(getPixelsFromDp(10),getPixelsFromDp(10),0,0);
-        tipTag.setLayoutParams(tipTaglp);
-        tipTag.setTextSize(12);
-        tipTag.setTextColor(getResources().getColor(R.color.white_normal));
-        tipTag.setGravity(Gravity.CENTER);
-        tipTag.setBackground(getResources().getDrawable(R.drawable.elem_tag_basic));
+        imageView.setImageBitmap(bitmap);
+        //imageView.setAdjustViewBounds(true);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        ViewGroup.LayoutParams ivlp = new LinearLayout.LayoutParams(getPixelsFromDp(190),
+                getPixelsFromDp(110));
+        imageView.setLayoutParams(ivlp);
 
-        //title样式
-        tvTitle.setGravity(Gravity.CENTER);
-        tvTitle.setTextSize(15);
-        tvTitle.setTextColor(getResources().getColor(R.color.text_light));
-        ViewGroup.LayoutParams titlelp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+        textView.setText(text);
+        textView.setTextSize(12);
+        textView.setLineSpacing(getPixelsFromDp(5),1);
+        ViewGroup.LayoutParams tvlp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
-        ((LinearLayout.LayoutParams) titlelp).setMargins(0,getPixelsFromDp(5),0,0);
-        tvTitle.setLayoutParams(titlelp);
+        textView.setLayoutParams(tvlp);
 
-        // subTitle样式
-        tvSubTitle.setGravity(Gravity.CENTER);
-        tvSubTitle.setTextSize(12);
-        tvSubTitle.setTextColor(getResources().getColor(R.color.text_light_sec));
-        ViewGroup.LayoutParams subTitlelp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        ((LinearLayout.LayoutParams) titlelp).setMargins(0,getPixelsFromDp(5),0,0);
-        tvSubTitle.setLayoutParams(subTitlelp);
+        linearLayout.addView(imageView);
+        linearLayout.addView(textView);
 
-        //tag容器样式
-        llTagContainer.setGravity(Gravity.CENTER);
-        llTagContainer.setOrientation(LinearLayout.HORIZONTAL);
-        ViewGroup.LayoutParams llContainerlp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        ((LinearLayout.LayoutParams) llContainerlp).setMargins(0,getPixelsFromDp(10),0,0);
-        llTagContainer.setLayoutParams(llContainerlp);
-
-        //tag_black1样式
-        tvTagBlack1.setGravity(Gravity.CENTER);
-        tvTagBlack1.setTextSize(10);
-        tvTagBlack1.setTextColor(getResources().getColor(R.color.text_light));
-        ViewGroup.LayoutParams tvTagBlack1lp = new LinearLayout.LayoutParams(getPixelsFromDp(52),
-                getPixelsFromDp(16));
-        ((LinearLayout.LayoutParams) tvTagBlack1lp).setMargins(getPixelsFromDp(4),0,getPixelsFromDp(4),0);
-        tvTagBlack1.setLayoutParams(tvTagBlack1lp);
-        tvTagBlack1.setBackground(getResources().getDrawable(R.drawable.elem_tag_outblack));
-
-        //tag_black2样式
-        tvTagBlack2.setGravity(Gravity.CENTER);
-        tvTagBlack2.setTextSize(10);
-        tvTagBlack2.setTextColor(getResources().getColor(R.color.text_light));
-        ViewGroup.LayoutParams tvTagBlack2lp = new LinearLayout.LayoutParams(getPixelsFromDp(52),
-                getPixelsFromDp(16));
-        ((LinearLayout.LayoutParams) tvTagBlack2lp).setMargins(getPixelsFromDp(4),0,getPixelsFromDp(4),0);
-        tvTagBlack2.setLayoutParams(tvTagBlack2lp);
-        tvTagBlack2.setBackground(getResources().getDrawable(R.drawable.elem_tag_outblack));
-
-        //tag_refular1样式
-        tvTagRed1.setGravity(Gravity.CENTER);
-        tvTagRed1.setTextSize(10);
-        tvTagRed1.setTextColor(getResources().getColor(R.color.text_light));
-        ViewGroup.LayoutParams tvTagRedlp = new LinearLayout.LayoutParams(getPixelsFromDp(52),
-                getPixelsFromDp(16));
-        ((LinearLayout.LayoutParams) tvTagRedlp).setMargins(getPixelsFromDp(4),0,getPixelsFromDp(4),0);
-        tvTagRed1.setLayoutParams(tvTagRedlp);
-        tvTagRed1.setBackground(getResources().getDrawable(R.drawable.elem_tag_outregular));
-
-        //price_container 样式
-        llPriceContainer.setGravity(Gravity.CENTER);
-        llPriceContainer.setOrientation(LinearLayout.HORIZONTAL);
-        ViewGroup.LayoutParams llContainerlp1 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        ((LinearLayout.LayoutParams) llContainerlp1).setMargins(0,getPixelsFromDp(15),0,0);
-        llPriceContainer.setLayoutParams(llContainerlp1);
-
-        //tv_price样式
-        ViewGroup.LayoutParams llContainerlp2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        tvPrice.setTextColor(getResources().getColor(R.color.text_regular));
-        tvPrice.setLayoutParams(llContainerlp2);
-
-        //tv_price_add样式
-        ViewGroup.LayoutParams llContainerlp3 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);
-        tvPriceAdd.setTextColor(getResources().getColor(R.color.text_light_sec));
-        ((LinearLayout.LayoutParams) llContainerlp3).setMargins(getPixelsFromDp(5),0,0,0);
-        tvPriceAdd.setText("起");
-        tvPriceAdd.setLayoutParams(llContainerlp3);
-
-        //设置元素的父子关系
-        rlContainer.addView(imageView);
-        rlContainer.addView(tipTag);
-
-        llTagContainer.addView(tvTagBlack1);
-        llTagContainer.addView(tvTagBlack2);
-        llTagContainer.addView(tvTagRed1);
-
-        llPriceContainer.addView(tvPrice);
-        llPriceContainer.addView(tvPriceAdd);
-
-        linearLayout.addView(rlContainer);
-        linearLayout.addView(tvTitle);
-        linearLayout.addView(tvSubTitle);
-        linearLayout.addView(llTagContainer);
-        linearLayout.addView(llPriceContainer);
-
-        // 使用数据进行渲染
-        imageView.setImageBitmap(productItemElemData.getImg());
-        if (productItemElemData.getTip_mark() != null && productItemElemData.getTip_mark().length() > 0) {
-            tipTag.setText(productItemElemData.getTip_mark());
-        } else {
-            rlContainer.removeView(tipTag);
-        }
-        tvTitle.setText(productItemElemData.getTitle());
-        tvSubTitle.setText(productItemElemData.getSubtitle());
-        tvPrice.setText(productItemElemData.getPrice());
-        List<ProductMarkItem> markItems = productItemElemData.getMark();
-        // List<Boolean> markIsUsed = new ArrayList<Boolean>();
-        Boolean[] markIsUsedList = new Boolean[]{false, false, false};
-        for (int i = 0; i < markItems.size(); i++) {
-            if (markItems.get(i).getFlag() == 0) {
-                if (!markIsUsedList[0]) {
-                    tvTagBlack1.setText(markItems.get(i).getName());
-                    markIsUsedList[0] = true;
-                } else if (!markIsUsedList[1]) {
-                    tvTagBlack2.setText(markItems.get(i).getName());
-                    markIsUsedList[1] = true;
-                }
-            } else {
-                if (!markIsUsedList[2]) {
-                    tvTagRed1.setText(markItems.get(i).getName());
-                    markIsUsedList[2] = true;
-                }
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"点击了斑马发现+"+url,Toast.LENGTH_SHORT).show();
             }
-        }
-        for (int i = 0; i < markIsUsedList.length; i++) {
-            if (!markIsUsedList[i]) {
-                if (i == 0) {
-                    llTagContainer.removeView(tvTagBlack1);
-                } else if (i == 1) {
-                    llTagContainer.removeView(tvTagBlack2);
-                } else if (i == 2) {
-                    llTagContainer.removeView(tvTagRed1);
-                }
-            }
-        }
+        });
 
         return linearLayout;
     }
@@ -418,7 +329,11 @@ public class MainHomeFragment extends Fragment {
         llElemListViewContainer = rootView.findViewById(R.id.ll_elemlistview_container);
         llElemListViewContainer.removeAllViews();
 
+        banmaFindContainer = rootView.findViewById(R.id.home_find_container);
+        banmaFindContainer.removeAllViews();
+
         inflater1 = (LayoutInflater) getContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+        twoDimenImageView = new ArrayList<OneDimenImageView>();
 
         new Thread(new Runnable() {
             @Override
@@ -435,7 +350,7 @@ public class MainHomeFragment extends Fragment {
                     //Log.i("xiaobaicai","Banner:-->"+homePageData.getBanner().toString());
                     //Log.i("xiaobaicai","Theme_list:-->"+homePageData.getTheme_list().toString());
                     //Log.i("xiaobaicai","activity:-->"+homePageData.getActivity().toString());
-                    //Log.i("xiaobaicai","Product:-->"+homePageData.getProduct().toString());
+                    Log.i("xiaobaicai","Product:-->"+homePageData.getProduct().toString());
                     //Log.i("xiaobaicai","acticle_list:-->"+homePageData.getArticle_list().toString());
 
                     //处理Banner
@@ -488,12 +403,27 @@ public class MainHomeFragment extends Fragment {
                         productListDataList.add(productListData);
                         //此时productListDataList中的数据中的bitmap都是null;
                     }
+                    //发送添加productlist信号
+                    Message message1 = UIhandler.obtainMessage();
+                    message1.what=ADD_PRODUCT_LIST;
+                    UIhandler.sendMessage(message1);
+
+
 
                     //开启新线程获取限定甄选图片数据图片数据
                     for(int i =0;i<homePageData.getProduct().size();i++){
                         for(int j = 0;j<homePageData.getProduct().get(i).getList().size();j++){
                             (new getProductItemBitmapThread(homePageData.getProduct().get(i).getList().get(j),i,j)).start();
                         }
+                    }
+
+                    //处理斑马发现
+                    for(int i = 0;i< homePageData.getArticle_list().getList().size();i++){
+                        HomeArticleListItemData homeArticleListItemData = homePageData.getArticle_list().getList().get(i);
+                        String text = homeArticleListItemData.getTitle();
+                        String url = homeArticleListItemData.getUrl();
+                        String img = homeArticleListItemData.getImg();
+                        (new getBanmaFindBitmapThread(url,text,img)).start();
                     }
 
                     //Log.i("xiaobaicai","banner_list:"+homePageData.getBanner().getList().toString());
@@ -646,11 +576,11 @@ public class MainHomeFragment extends Fragment {
             if(bitFile.exists()) {
                 Bitmap bitmap =  SDCardTools.loadBitmapFromSDCard(dirPath+File.separator+fileName);
                 // ProductItemElemData productItemElemData = new ProductItemElemData(productListItemData.getId(),bitmap,productListItemData.getTitle(), productListItemData.getSubtitle(),productListItemData.getPrice(),productListItemData.getUrl(),productListItemData.getTip_mark(),productListItemData.getMark());
-                productListDataList.get(i).getProductItemElemDataList().get(j).setImg(bitmap);
+                //productListDataList.get(i).getProductItemElemDataList().get(j).setImg(bitmap);
 
                 Message message = UIhandler.obtainMessage();
-                message.what=ADD_PRODUCT_LIST;
-                message.obj = new UpdateProductData(i,j);
+                message.what=UPDATE_PRODUCT_LIST_BITMAP;
+                message.obj = new UpdateProductData(i,j,bitmap);
                 UIhandler.sendMessage(message);
             }else{
                 OkHttpUtils.get().url(productListItemData.getImg()).tag(this)
@@ -665,11 +595,64 @@ public class MainHomeFragment extends Fragment {
                             public void onResponse(final Bitmap response, int id) {
                                 SDCardTools.saveBitmapToSDCardDir(response, dirPath, fileName, getActivity().getBaseContext());
                                 //ProductItemElemData productItemElemData = new ProductItemElemData(productListItemData.getId(),response,productListItemData.getTitle(), productListItemData.getSubtitle(),productListItemData.getPrice(),productListItemData.getUrl(),productListItemData.getTip_mark(),productListItemData.getMark());
-                                productListDataList.get(i).getProductItemElemDataList().get(j).setImg(response);
+                                //productListDataList.get(i).getProductItemElemDataList().get(j).setImg(response);
 
                                 Message message = UIhandler.obtainMessage();
-                                message.what=ADD_PRODUCT_LIST;
-                                message.obj = new UpdateProductData(i,j);
+                                message.what=UPDATE_PRODUCT_LIST_BITMAP;
+                                message.obj = new UpdateProductData(i,j,response);
+                                UIhandler.sendMessage(message);
+                            }
+                        });
+            }
+        }
+    }
+
+    //获取斑马发现图片线程
+    private class getBanmaFindBitmapThread extends Thread{
+        private String url;
+        private String text;
+        private String img;
+
+        public getBanmaFindBitmapThread(String url,String text,String img){
+            this.url = url;
+            this.text = text;
+            this.img = img;
+        }
+
+        @Override
+        public void run(){
+            Uri uri = Uri.parse(img);                           //转化为url
+            String path = uri.getPath();                        //获取url中的path
+            String[] temp = path.split("/");
+            final String dirPath = getContext().getExternalCacheDir().getAbsolutePath()+ getDirPath(path);//+ File.separator +temp[temp.length - 1];    //获取文件的本地位置
+            final String fileName = temp[temp.length - 1];
+            File file = new File(dirPath);
+            if(!file.exists()){
+                file.mkdirs(); //递归创建自定义目录
+            }
+            final File bitFile = new File(dirPath,fileName);
+            if(bitFile.exists()) {
+                Bitmap bitmap =  SDCardTools.loadBitmapFromSDCard(dirPath+File.separator+fileName);
+                Message message = UIhandler.obtainMessage();
+                message.what= ADD_BANMA_FIND_ITEM;
+                message.obj = new AddBanmaFindData(url,text,bitmap);
+                UIhandler.sendMessage(message);
+            }else{
+                OkHttpUtils.get().url(img).tag(this)
+                        .build()
+                        .connTimeOut(20000).readTimeOut(20000).writeTimeOut(20000)
+                        .execute(new BitmapCallback() {
+                            @Override
+                            public void onError(okhttp3.Call call, Exception e, int id) {
+                                Log.e("xiaobaicai", e.toString());
+                            }
+                            @Override
+                            public void onResponse(final Bitmap response, int id) {
+                                SDCardTools.saveBitmapToSDCardDir(response, dirPath, fileName, getActivity().getBaseContext());
+
+                                Message message = UIhandler.obtainMessage();
+                                message.what= ADD_BANMA_FIND_ITEM;
+                                message.obj = new AddBanmaFindData(url,text,response);
                                 UIhandler.sendMessage(message);
                             }
                         });
@@ -734,9 +717,11 @@ public class MainHomeFragment extends Fragment {
     private class UpdateProductData{
         private int i;
         private int j;
-        public UpdateProductData(int i,int j){
+        private Bitmap bitmap;
+        public UpdateProductData(int i,int j,Bitmap bitmap){
             this.i = i;
             this.j = j;
+            this.bitmap = bitmap;
         }
 
         public int getI() {
@@ -753,6 +738,14 @@ public class MainHomeFragment extends Fragment {
 
         public void setJ(int j) {
             this.j = j;
+        }
+
+        public Bitmap getBitmap() {
+            return bitmap;
+        }
+
+        public void setBitmap(Bitmap bitmap) {
+            this.bitmap = bitmap;
         }
     }
 
@@ -780,6 +773,45 @@ public class MainHomeFragment extends Fragment {
 
         public void setI(int i) {
             this.i = i;
+        }
+    }
+
+    //更新斑马发现
+    private class AddBanmaFindData{
+        private String url;
+        private String text;
+        private Bitmap bitmap;
+
+        public AddBanmaFindData(){}
+
+        public AddBanmaFindData(String url,String text,Bitmap bitmap){
+            this.url = url;
+            this.bitmap = bitmap;
+            this.text = text;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public Bitmap getBitmap() {
+            return bitmap;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public void setBitmap(Bitmap bitmap) {
+            this.bitmap = bitmap;
+        }
+
+        public void setText(String text) {
+            this.text = text;
         }
     }
 
@@ -854,6 +886,21 @@ public class MainHomeFragment extends Fragment {
     }
 
 
+    //ImagerView一维数组存储器
+    private class OneDimenImageView{
+        private List<ImageView> onedimenImageView;       //内部保存一个一维Bitmap数组
+        public OneDimenImageView(){
+            this.onedimenImageView = new ArrayList<ImageView>();
+        }
+
+        public void setOnedimenImageView(List<ImageView> onedimenImageView) {
+            this.onedimenImageView = onedimenImageView;
+        }
+
+        public List<ImageView> getOnedimenImageView() {
+            return onedimenImageView;
+        }
+    }
 
     //输入网络请求中的path字段,输出应该用于映射到本地的path
     private String getDirPath(String path){
