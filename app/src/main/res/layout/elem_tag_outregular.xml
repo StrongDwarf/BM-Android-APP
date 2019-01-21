@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    android:id="@+id/tv_tag_out_black"
+    android:textSize="10dp"
+    android:gravity="center"
+    android:layout_width="52dp"
+    android:layout_height="16dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:textColor="@color/text_light"
+    android:text="Tag"
+    android:background="@drawable/elem_tag_outblack"
+    xmlns:android="http://schemas.android.com/apk/res/android" />

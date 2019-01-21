@@ -6,7 +6,7 @@ public class HomePageData{
     private HomeBannerData banner;
     private List<HomeThemeListItemData> theme_list;
     private HomeActivityData activity;
-    private List<HomeProductItemData> product;
+    private List<ProductItemData> product;
     private HomeArticleListData article_list;
 
     public HomeActivityData getActivity() {
@@ -21,7 +21,7 @@ public class HomePageData{
         return banner;
     }
 
-    public List<HomeProductItemData> getProduct() {
+    public List<ProductItemData> getProduct() {
         return product;
     }
 
@@ -41,7 +41,7 @@ public class HomePageData{
         this.banner = banner;
     }
 
-    public void setProduct(List<HomeProductItemData> product) {
+    public void setProduct(List<ProductItemData> product) {
         this.product = product;
     }
 
@@ -94,37 +94,6 @@ public class HomePageData{
 
         public void setId(int id) {
             this.id = id;
-        }
-    }
-
-    /**
-     * 产品 item
-     */
-    private class HomeProductItemData{
-        private String title;
-        private List<ProductListItemData> list;
-
-        public HomeProductItemData(){}
-
-        public HomeProductItemData(String title,List<ProductListItemData> list){
-            this.title = title;
-            this.list = list;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-
-        public List<ProductListItemData> getList() {
-            return list;
-        }
-
-        public void setList(List<ProductListItemData> list) {
-            this.list = list;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
         }
     }
 }

@@ -136,7 +136,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:layout_centerInParent="true">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -157,19 +158,35 @@
                     android:layout_height="wrap_content"
                     android:paddingBottom="20dp"
                     android:numColumns="4"
+                    android:paddingLeft="10dp"
                     android:background="@drawable/elem_bottom_line_black"></com.app.bm.bm.common.extend.elem.ElemGridView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="限定甄选"
-                    android:textSize="18dp"
-                    android:textColor="#333333"
-                    android:layout_marginTop="40dp"/>
-                <ListView
-                    android:id="@+id/index_lv_limie_select"
-                    android:background="#f3f3f3"
+
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></ListView>
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/ll_elemlistview_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="限定甄选"
+                                android:textSize="18dp"
+                                android:textColor="#333333"
+                                android:layout_marginTop="40dp"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </ScrollView>
+
+
 
 
                 <TextView

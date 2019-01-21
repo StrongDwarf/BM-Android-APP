@@ -1,10 +1,12 @@
 package com.app.bm.bm.common.datas;
 
+import android.graphics.Bitmap;
+
 import java.util.List;
 
-public class ProductListItemData{
+public class ProductItemElemData{
     private int id;
-    private String img;
+    private Bitmap img;
     private String title;
     private String subtitle;
     private String price;
@@ -12,11 +14,21 @@ public class ProductListItemData{
     private String tip_mark;
     private List<ProductMarkItem> mark;
 
-    public ProductListItemData(){}
+    public ProductItemElemData(){}
 
-    public ProductListItemData(int id,String img,String title,String subtitle,String price,String url,String tip_mark,List<ProductMarkItem> mark){
+    public ProductItemElemData(int id,Bitmap img,String title,String subtitle,String price,String url,String tip_mark,List<ProductMarkItem> mark){
         this.id = id;
         this.img = img;
+        this.title = title;
+        this.subtitle = subtitle;
+        this.price = price;
+        this.url = url;
+        this.tip_mark = tip_mark;
+        this.mark = mark;
+    }
+
+    public ProductItemElemData(int id,String title,String subtitle,String price,String url,String tip_mark,List<ProductMarkItem> mark){
+        this.id = id;
         this.title = title;
         this.subtitle = subtitle;
         this.price = price;
@@ -37,7 +49,7 @@ public class ProductListItemData{
         return id;
     }
 
-    public String getImg() {
+    public Bitmap getImg() {
         return img;
     }
 
@@ -69,7 +81,7 @@ public class ProductListItemData{
         this.id = id;
     }
 
-    public void setImg(String img) {
+    public void setImg(Bitmap img) {
         this.img = img;
     }
 

@@ -31,6 +31,7 @@
     <!-- 文字颜色 -->
     <color name="text_light">#333</color>
     <color name="text_light_sec">#898989</color>
+    <color name="text_regular">#c04374</color>
 
     <!-- small文字颜色 -->
     <color name="small_basic">#000</color>
